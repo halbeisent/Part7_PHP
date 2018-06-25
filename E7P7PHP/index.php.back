@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Exercice 7 Partie 7 PHP</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="rule">
+    <p>Au formulaire de l'exercice 5, ajouter un champ d'envoi de fichier. Afficher en plus de ce qui est demandé à l'exercice 6, le nom et l'extension du fichier.</p>
+  </div>
+  <div class="answer">
+    <?php
+    // On initialise la variable $displayForm à True pour afficher le formulaire au chargement
+    $displayForm = True;
+    if (isset($_POST['submit'])) {
+      // Au submit, on cache le formulaire et on affiche ce message
+      echo htmlspecialchars(sprintf('Bonjour %s %s %s. Vous avez envoyé le fichier : %s',$_POST['gender'],$_POST['prenom'],$_POST['nom'],$_FILES['fileSelect']['name']));
+      $displayForm = False;
+    } else { ?>
+      <!-- j'utilise la méthode $_POST[''] et demande un rechargement de la page avec la réponse au submit -->
+      <!-- Le enctype permet de prévenir le navigateur qu'un upload va avoir lieu -->
+      <form method="post" action="index.php" enctype="multipart/form-data">
+        <p>Civilité</p>
+        <select name="gender">
+          <option value="mr">Mr.</option>
+          <option value="mrs">Mme.</option>
+        </select>
+        <p>Veuillez entrer votre prénom svp</p>
+        <input type="text" placeholder="Prénom" name="prenom" />
+        <p>Veuillez entrer votre nom svp</p>
+        <input type="text" placeholder="Nom" name="nom" />
+        <input type="file" name="fileSelect" />
+        <input type="submit" name="submit" value="valider" />
+      </form>
+    <?php } ?>
+  </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Kavivanar');
+
+body {
+  background-color: #011128;
+  font-family: 'Kavivanar', cursive;
+}
+
+.rule {
+  padding: 1em;
+  background-color: #41337A;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 2em;
+  border-radius: 10px;
+}
+
+.answer {
+  margin-top: 35px;
+  padding: 1em;
+  background-color: #36558F;
+  font-size: 1.5em;
+  text-align: center;
+  border-radius: 10px;
+}

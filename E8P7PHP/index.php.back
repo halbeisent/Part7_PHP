@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Exercice 8 Partie 7 PHP</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="rule">
+    <p>Avec le formulaire de l'exercice 5, Si des données sont passées en POST ou en GET, le formulaire ne doit pas être affiché. Par contre les données transmises doivent l'être. Dans le cas contraire, c'est l'inverse. Utiliser qu'une seule page.</p>
+  </div>
+  <div class="answer">
+    <?php
+    // On initialise la variable $displayForm à True pour afficher le formulaire au chargement
+    $displayForm = True;
+    // Si le formulaire est validé
+    if (isset($_POST['submit'])) {
+      // On le cache et on affiche le message ci-dessous
+      echo htmlspecialchars(sprintf('Bonjour %s %s %s. Vous avez envoyé le fichier : %s',$_POST['gender'],$_POST['prenom'],$_POST['nom'],$_FILES['fileSelect']['name']));
+      $displayForm = False;
+    } else { ?>
+    <!-- j'utilise la méthode $_POST[''] et demande un rechargement de la page avec la réponse au submit -->
+    <form method="post" action="index.php" enctype="multipart/form-data">
+      <!-- Ajout des champs du formulaire -->
+      <p>Civilité</p>
+      <select name="gender">
+        <option value="mr">Mr.</option>
+        <option value="mrs">Mme.</option>
+      </select>
+      <p>Veuillez entrer votre prénom svp</p>
+      <input type="text" placeholder="Prénom" name="prenom" />
+      <p>Veuillez entrer votre nom svp</p>
+      <input type="text" placeholder="Nom" name="nom" />
+      <!-- Le fait de spécifier accept="application/pdf" fait que le navigateur ne verra pas les autres fichiers -->
+      <input type="file" name="fileSelect" accept="application/pdf" />
+      <input type="submit" name="submit" value="valider" />
+    </form>
+  <?php } ?>
+  </div>
+</body>
+</html>
